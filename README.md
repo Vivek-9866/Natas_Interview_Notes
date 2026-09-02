@@ -9,7 +9,7 @@
 - "I wouldn't trust the UI restriction. I'd capture the request in Burp, identify the backend endpoint, and replay it directly. My main check is whether the server itself verifies authorization."
 
 - 🎯 Remember:
-- Don't trust UI → Capture → Replay → Check server authorization
+- Don't trust UI → Capture → Replay → Check server authorization 
 
 - ## Q2. Scenario: Hidden API
 

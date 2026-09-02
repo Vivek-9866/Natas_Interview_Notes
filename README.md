@@ -221,7 +221,6 @@ Instead say:
 6. **"Severity should be based on actual impact, not just the presence of exposure."**
 
 
-
 # 📌 DAY 2 — NATAS LEVELS 3–4
 
 # 🟢 LEVEL 3 — robots.txt / Hidden Resources

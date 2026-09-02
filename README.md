@@ -56,3 +56,89 @@
 
 - 🔥 This sounds much better than:
 - "I use Burp because it's a hacking tool."
+
+-  # 🟢 Level 2 — Exposed Resources
+- ## Q1. Scenario: Backup File
+
+- You find:
+
+- /backup/database.sql
+
+- and it's publicly accessible.
+
+- ## Interviewer:
+
+- What do you do?
+
+- ## Answer:
+
+- "First I'd verify unauthenticated access, then check what sensitive information is exposed and its potential impact. I would collect minimal evidence and recommend removing the backup from the web-accessible location."
+
+- 🎯 Remember:
+
+- Access → Sensitive data → Impact → Evidence → Fix
+
+- ## Q2. Scenario: .env File
+
+ - During testing you discover:
+
+- /.env
+
+- containing:
+
+- DB_HOST=
+- DB_USER=
+- API_KEY=
+- ## Interviewer:
+
+- How would you handle it?
+
+ - Answer:
+
+- "I'd verify whether the file is publicly accessible and determine whether the secrets are valid. I would avoid unnecessary exploitation and report the exposure with evidence and recommend removing secrets from the web root and rotating compromised credentials."
+
+- 🔥 Strong phrase:
+
+- "Exposure of secrets can become an entry point for further compromise."
+
+- ## Q3. Real-world example: Debug Page
+
+- A production application exposes:
+
+- /debug
+
+- and shows:
+
+- Server version
+- Application path
+- Environment variables
+- ## Interviewer:
+
+- What's your approach?
+
+- ## Answer:
+
+- "I'd identify exactly what information is exposed and whether it helps an attacker compromise the application. Debug functionality should normally be disabled or restricted in production."
+
+ - 🎯 Remember:
+
+- What exposed? → Is it sensitive? → Can it help attack? → Disable/restrict
+
+- ## Q4. Interviewer challenge
+
+- Interviewer:
+- You found a public backup file, but it contains no credentials. Is it still a vulnerability?
+
+- Impressive short answer:
+
+ - "Potentially, yes, but I wouldn't automatically rate it high. I'd assess what information is exposed, whether it contains sensitive business data or source code, and determine the actual security impact before assigning severity."
+
+- 🔥 This shows maturity.
+
+- You're not saying:
+
+- "Everything is Critical."
+
+- You're saying:
+
+- "Severity depends on impact."

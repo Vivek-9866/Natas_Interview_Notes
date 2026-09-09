@@ -164,3 +164,132 @@
 **Remember the flow, not the full sentence.**
 
 **Identify → Test → Verify → Impact → Report**
+
+
+
+# VAPT Interview Preparation — Day 2
+## Question 3 & Question 4
+
+---
+
+# Question 3 — Login Functionality
+
+## 🎤 Interview Question
+
+**How would you test the login functionality of a web application?**
+
+## 💡 Answer
+
+First, I would test the **password policy, account enumeration, and authentication bypass**. Then I would check **brute-force protection, rate limiting, and account lockout**. Finally, I would assess the impact and report the finding with evidence.
+
+## 🌐 Real-Time Example 1
+
+Imagine a **banking application**. I would try incorrect passwords multiple times. If the application allows unlimited login attempts without rate limiting or account lockout, an attacker could perform a **brute-force attack** and potentially take over the account.
+
+## 🌐 Real-Time Example 2
+
+Imagine an **e-commerce application**. If the application gives different error messages for valid and invalid usernames, an attacker could perform **account enumeration** and identify valid user accounts.
+
+## 📌 Impact
+
+- Brute-force attacks
+- Account takeover
+- Sensitive data exposure
+- Financial loss
+
+## 🛠️ Recommendation
+
+Implement **rate limiting and temporary account lockout** after multiple failed login attempts.
+
+## 🧠 Memory Line
+
+**Login → Password Policy → Enumeration → Bypass → Brute Force → Rate Limiting → Impact → Report**
+
+---
+
+# Question 4 — Session Management
+
+## Scenario 1 — Session Cookie Security
+
+### 🎤 Interview Question
+
+**How would you check whether session cookies are secure?**
+
+### 💡 Answer
+
+I would log in and capture the session cookie using **Burp Suite**. Then I would check the **Secure, HttpOnly, and SameSite** flags, cookie expiry, and logout behavior. Finally, I would assess the impact and report it with evidence.
+
+### 🌐 Real-Time Example 1
+
+Imagine an **e-commerce application**. If the **HttpOnly** flag is missing and the application has an XSS vulnerability, an attacker may steal the session cookie and potentially **hijack the user's session**.
+
+### 🌐 Real-Time Example 2
+
+Imagine a **banking application**. If the **Secure** flag is missing, the session cookie may be exposed over an insecure connection, increasing the risk of **session theft**.
+
+### 🧠 Memory Line
+
+**Capture Cookie → Check Flags → Check Expiry → Test Logout → Impact → Report**
+
+---
+
+## Scenario 2 — Session Reuse After Authentication
+
+### 🎤 Interview Question
+
+**How would you test whether a session can be reused after authentication?**
+
+### 💡 Answer
+
+I would capture the **session ID before login** and then capture it again after successful authentication using Burp Suite. I would compare both session IDs. If the same session ID remains after authentication, I would investigate it as a potential **session fixation** vulnerability.
+
+### 🌐 Real-Time Example 1
+
+Imagine a **banking application**. If the session ID remains the same before and after login, the application may not be properly regenerating the session ID after authentication. I would investigate this as a potential session fixation issue.
+
+### 🌐 Real-Time Example 2
+
+Imagine an **e-commerce application**. If the same session ID remains after authentication, I would report that the application is not properly **regenerating the session identifier** after login.
+
+### 🧠 Memory Line
+
+**Before Login → Capture Session ID → Login → Capture Again → Compare → Same ID = Investigate Session Fixation**
+
+---
+
+# ⚡ Quick Revision
+
+### Q3 — Login Functionality
+
+**Focus:** Login security and brute-force protection
+
+**Key Points:**  
+Password Policy → Account Enumeration → Authentication Bypass → Brute Force → Rate Limiting → Account Lockout
+
+---
+
+### Q4 — Scenario 1
+
+**Focus:** Session Cookie Security
+
+**Key Points:**  
+Secure → HttpOnly → SameSite → Expiry → Logout
+
+---
+
+### Q4 — Scenario 2
+
+**Focus:** Session ID Regeneration
+
+**Key Points:**  
+Before Login → Capture Session ID → Login → Capture Again → Compare → Session Fixation
+
+---
+
+# 🎯 Final Memory Trick
+
+**Q3:** Can an attacker attack the **login**?
+
+**Q4.1:** Is the **session cookie secure**?
+
+**Q4.2:** Does the **session ID change after login**?

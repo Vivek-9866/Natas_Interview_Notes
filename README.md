@@ -293,3 +293,79 @@ Before Login → Capture Session ID → Login → Capture Again → Compare → 
 **Q4.1:** Is the **session cookie secure**?
 
 **Q4.2:** Does the **session ID change after login**?
+
+# VAPT Interview Preparation — Day 2
+## Question 5 & Question 6
+
+---
+
+# Question 5 — IDOR / Broken Access Control
+
+## 🎤 Interview Question
+
+**How would you test whether a web application is vulnerable to IDOR?**
+
+## 💡 Answer
+
+I would capture the request in **Burp Suite**, identify an object ID like `user_id` or `order_id`, change it, and check if I can access another user's data. If yes, I would report it as **IDOR / Broken Access Control**.
+
+## 🌐 Scenario 1 — Banking
+
+`user_id=1001` → change to `1002`
+
+If another user's account details are visible, it is **IDOR**.
+
+## 🌐 Scenario 2 — E-commerce
+
+`order_id=5001` → change to `5002`
+
+If another customer's order is accessible, it is **Broken Access Control**.
+
+## 🧠 Memory Line
+
+**Capture → Change ID → Unauthorized Access → Report**
+
+### 🔄 Follow-Up
+
+**Authentication vs Authorization?**
+
+> Authentication = **Who are you?**  
+> Authorization = **What can you access?**
+
+---
+
+# Question 6 — Command Injection
+
+## 🎤 Interview Question
+
+**How would you test for Command Injection?**
+
+## 💡 Answer
+
+I would identify user input that may reach an **OS command**, capture the request in **Burp Suite**, and safely test the input. If I confirm **unauthorized OS command execution**, I would assess the impact and report it.
+
+## 🌐 Scenario 1 — Ping
+
+A network application accepts an IP address. If the input allows unauthorized OS command execution, it is **Command Injection**.
+
+## 🌐 Scenario 2 — Diagnostic Tool
+
+A server diagnostic application accepts a hostname. If the input can cause unauthorized OS command execution, I would report **Command Injection**.
+
+## 🧠 Memory Line
+
+**Input → Burp → Safe Test → OS Execution → Impact → Report**
+
+### 🔄 Follow-Up
+
+**What is the impact?**
+
+> Unauthorized command execution can lead to **data exposure, service disruption, or server compromise**.
+
+---
+
+# ⚡ Quick Revision
+
+**Q5:** Change Object ID → Access Other User → **IDOR**
+
+**Q6:** User Input → OS Command → Unauthorized Execution → **Command Injection**

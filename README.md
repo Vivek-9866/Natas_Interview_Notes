@@ -369,3 +369,151 @@ A server diagnostic application accepts a hostname. If the input can cause unaut
 **Q5:** Change Object ID → Access Other User → **IDOR**
 
 **Q6:** User Input → OS Command → Unauthorized Execution → **Command Injection**
+
+
+
+# VAPT Interview Preparation — Q7 to Q9
+
+---
+
+# Q7 — Cross-Site Scripting (XSS)
+
+## 🎤 Main Question
+**How would you test a web application for XSS?**
+
+### 💡 Answer
+I would identify user-controlled inputs, capture the request in Burp Suite, and safely test whether the input is executed in the browser. I would check Reflected, Stored, and DOM XSS, then assess impact and report it.
+
+### 🌐 Scenario 1 — Search Box
+
+**Question:** How would you test a search box for XSS?
+
+**Answer:**  
+I would enter normal input, capture the request in Burp Suite, and test whether the input is reflected and executed in the browser. If it executes, I would report it as XSS.
+
+**Real-Time:** E-commerce search input executes attacker-controlled content.
+
+### 🌐 Scenario 2 — Comment Section
+
+**Question:** How would you test comments for XSS?
+
+**Answer:**  
+I would submit controlled test input in a comment and check whether it is stored and executed when another user views the comment. If it executes, it indicates Stored XSS.
+
+**Real-Time:** A malicious comment executes in another user's browser.
+
+### 🔹 Subtopics
+- Reflected XSS
+- Stored XSS
+- DOM XSS
+- Output Encoding
+- CSP
+- HttpOnly
+
+### 🔄 Follow-up
+**Reflected vs Stored XSS?**
+
+Reflected XSS executes from the immediate request/response, while Stored XSS is saved by the application and executes later.
+
+### 🧠 Memory
+**Input → Burp → Execute → XSS Type → Impact → Report**
+
+---
+
+# Q8 — Path Traversal / File Inclusion
+
+## 🎤 Main Question
+**How would you test for Path Traversal?**
+
+### 💡 Answer
+I would identify parameters that accept file paths, capture the request in Burp Suite, and safely test whether I can access files outside the intended directory. If unauthorized access is confirmed, I would assess the impact and report it.
+
+### 🌐 Scenario 1 — File Download
+
+**Question:** How would you test a file download function?
+
+**Answer:**  
+I would capture the download request in Burp Suite and check whether modifying the file parameter allows access to files outside the intended directory.
+
+**Real-Time:** An HR portal exposes files from an unauthorized directory.
+
+### 🌐 Scenario 2 — File Viewer
+
+**Question:** How would you test a file viewer?
+
+**Answer:**  
+I would identify the file/path parameter and safely test whether path manipulation allows access to unauthorized server-side files.
+
+**Real-Time:** A web application exposes sensitive configuration files.
+
+### 🔹 Subtopics
+- Path Traversal
+- Directory Traversal
+- LFI
+- RFI
+- Input Validation
+
+### 🔄 Follow-up
+**What is the impact?**
+
+It can expose sensitive files, configuration data, credentials, or other server-side information.
+
+### 🧠 Memory
+**File Parameter → Burp → Modify Path → Unauthorized File → Impact**
+
+---
+
+# Q9 — File Upload Vulnerability
+
+## 🎤 Main Question
+**How would you test a file upload functionality?**
+
+### 💡 Answer
+I would capture the upload request in Burp Suite and check extension, MIME type, filename, and content validation. Then I would check how the file is stored and whether it can be executed unexpectedly.
+
+### 🌐 Scenario 1 — Profile Picture
+
+**Question:** How would you test a profile-picture upload?
+
+**Answer:**  
+I would check whether the application properly validates the file extension, MIME type, and content. I would also verify that uploaded files cannot be executed unexpectedly.
+
+**Real-Time:** A profile-picture upload accepts an unauthorized file type because of weak server-side validation.
+
+### 🌐 Scenario 2 — Resume Upload
+
+**Question:** How would you test a resume upload?
+
+**Answer:**  
+I would capture the request in Burp Suite and test whether unauthorized file types can bypass server-side validation. I would also check the storage location and access controls.
+
+**Real-Time:** A job portal allows an unsafe file to be uploaded due to weak validation.
+
+### 🔹 Subtopics
+- Extension Validation
+- MIME-Type Validation
+- Content Validation
+- Filename Validation
+- File Storage
+- File Execution
+- File Size Limits
+
+### 🔄 Follow-up
+**Client-side vs Server-side validation?**
+
+Server-side validation is important because client-side validation can be bypassed by modifying the request.
+
+### 🧠 Memory
+**Upload → Burp → Validate → Store → Execute? → Impact → Report**
+
+---
+
+# ⚡ Q7–Q9 Final Revision
+
+| Q | Topic | Memory |
+|---|---|---|
+| Q7 | XSS | Input → Execute → Impact |
+| Q8 | Path Traversal | File → Modify Path → Unauthorized Access |
+| Q9 | File Upload | Upload → Validate → Store → Execute |
+
+---

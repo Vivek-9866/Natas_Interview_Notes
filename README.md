@@ -371,38 +371,37 @@ A server diagnostic application accepts a hostname. If the input can cause unaut
 **Q6:** User Input → OS Command → Unauthorized Execution → **Command Injection**
 
 
-
-# VAPT Interview Preparation — Q7 to Q9
+# VAPT Interview Preparation — Q7 to Q10
 
 ---
 
 # Q7 — Cross-Site Scripting (XSS)
 
-## 🎤 Main Question
+## 🎤 Interview Question
 **How would you test a web application for XSS?**
 
-### 💡 Answer
-I would identify user-controlled inputs, capture the request in Burp Suite, and safely test whether the input is executed in the browser. I would check Reflected, Stored, and DOM XSS, then assess impact and report it.
+## 💡 Answer
+I would identify user-controlled inputs, capture the request in Burp Suite, and safely test whether the input executes in the browser. I would check Reflected, Stored, and DOM XSS, then assess the impact and report it.
 
-### 🌐 Scenario 1 — Search Box
+## 🌐 Scenario 1 — Search Box
 
 **Question:** How would you test a search box for XSS?
 
 **Answer:**  
-I would enter normal input, capture the request in Burp Suite, and test whether the input is reflected and executed in the browser. If it executes, I would report it as XSS.
+Capture the search request in Burp Suite and test whether the input is reflected and executed in the browser.
 
-**Real-Time:** E-commerce search input executes attacker-controlled content.
+**Real-Time:** E-commerce search → input executes in the browser → Reflected XSS.
 
-### 🌐 Scenario 2 — Comment Section
+## 🌐 Scenario 2 — Comments
 
 **Question:** How would you test comments for XSS?
 
 **Answer:**  
-I would submit controlled test input in a comment and check whether it is stored and executed when another user views the comment. If it executes, it indicates Stored XSS.
+Submit controlled input and check whether it is stored and executes when another user views the comment.
 
-**Real-Time:** A malicious comment executes in another user's browser.
+**Real-Time:** Product review → stored input executes for another user → Stored XSS.
 
-### 🔹 Subtopics
+## 🔹 Subtopics
 - Reflected XSS
 - Stored XSS
 - DOM XSS
@@ -410,110 +409,172 @@ I would submit controlled test input in a comment and check whether it is stored
 - CSP
 - HttpOnly
 
-### 🔄 Follow-up
-**Reflected vs Stored XSS?**
+## 🔄 Follow-up
 
-Reflected XSS executes from the immediate request/response, while Stored XSS is saved by the application and executes later.
+**Reflected vs Stored?**
 
-### 🧠 Memory
+Reflected → immediate response.  
+Stored → saved and executed later.
+
+## 🧠 Memory
 **Input → Burp → Execute → XSS Type → Impact → Report**
 
 ---
 
-# Q8 — Path Traversal / File Inclusion
+# Q8 — Path Traversal
 
-## 🎤 Main Question
-**How would you test for Path Traversal?**
+## 🎤 Interview Question
+**How would you test a web application for Path Traversal?**
 
-### 💡 Answer
-I would identify parameters that accept file paths, capture the request in Burp Suite, and safely test whether I can access files outside the intended directory. If unauthorized access is confirmed, I would assess the impact and report it.
+## 💡 Answer
+I would identify file/path parameters, capture the request in Burp Suite, and safely test whether I can access files outside the intended directory. If unauthorized access is confirmed, I would assess the impact and report it.
 
-### 🌐 Scenario 1 — File Download
+## 🌐 Scenario 1 — File Download
 
 **Question:** How would you test a file download function?
 
 **Answer:**  
-I would capture the download request in Burp Suite and check whether modifying the file parameter allows access to files outside the intended directory.
+Capture the request and test whether modifying the file parameter allows access to unauthorized files.
 
-**Real-Time:** An HR portal exposes files from an unauthorized directory.
+**Real-Time:** HR portal → file path manipulated → unauthorized file exposed.
 
-### 🌐 Scenario 2 — File Viewer
+## 🌐 Scenario 2 — File Viewer
 
 **Question:** How would you test a file viewer?
 
 **Answer:**  
-I would identify the file/path parameter and safely test whether path manipulation allows access to unauthorized server-side files.
+Identify the file/path parameter and test whether path manipulation allows access outside the intended directory.
 
-**Real-Time:** A web application exposes sensitive configuration files.
+**Real-Time:** File viewer → sensitive server file exposed → Path Traversal.
 
-### 🔹 Subtopics
+## 🔹 Subtopics
 - Path Traversal
 - Directory Traversal
 - LFI
 - RFI
+- File Access Control
 - Input Validation
 
-### 🔄 Follow-up
-**What is the impact?**
+## 🔄 Follow-up
 
-It can expose sensitive files, configuration data, credentials, or other server-side information.
+**Impact?**
 
-### 🧠 Memory
-**File Parameter → Burp → Modify Path → Unauthorized File → Impact**
+Sensitive file disclosure, configuration exposure, or credential leakage.
+
+## 🧠 Memory
+**File Parameter → Burp → Change Path → Unauthorized File → Impact**
 
 ---
 
 # Q9 — File Upload Vulnerability
 
-## 🎤 Main Question
+## 🎤 Interview Question
 **How would you test a file upload functionality?**
 
-### 💡 Answer
-I would capture the upload request in Burp Suite and check extension, MIME type, filename, and content validation. Then I would check how the file is stored and whether it can be executed unexpectedly.
+## 💡 Answer
+I would capture the upload request in Burp Suite and check extension, MIME type, filename, and content validation. Then I would check how the file is stored and whether it can be accessed or executed unexpectedly.
 
-### 🌐 Scenario 1 — Profile Picture
+## 🌐 Scenario 1 — Profile Picture
 
 **Question:** How would you test a profile-picture upload?
 
 **Answer:**  
-I would check whether the application properly validates the file extension, MIME type, and content. I would also verify that uploaded files cannot be executed unexpectedly.
+Upload a valid image first, capture it in Burp, then test extension, MIME type, content validation, and storage behavior.
 
-**Real-Time:** A profile-picture upload accepts an unauthorized file type because of weak server-side validation.
+**Real-Time:** Social media → weak validation → unauthorized file accepted.
 
-### 🌐 Scenario 2 — Resume Upload
+## 🌐 Scenario 2 — Resume Upload
 
 **Question:** How would you test a resume upload?
 
 **Answer:**  
-I would capture the request in Burp Suite and test whether unauthorized file types can bypass server-side validation. I would also check the storage location and access controls.
+Capture the request and test whether unauthorized file types can bypass server-side validation. Also check storage and access controls.
 
-**Real-Time:** A job portal allows an unsafe file to be uploaded due to weak validation.
+**Real-Time:** Job portal → weak validation → unsafe file uploaded.
 
-### 🔹 Subtopics
+## 🔹 Subtopics
 - Extension Validation
 - MIME-Type Validation
 - Content Validation
 - Filename Validation
 - File Storage
 - File Execution
-- File Size Limits
+- Size Limits
 
-### 🔄 Follow-up
+## 🔄 Follow-up
+
 **Client-side vs Server-side validation?**
 
-Server-side validation is important because client-side validation can be bypassed by modifying the request.
+Server-side validation is important because client-side validation can be bypassed.
 
-### 🧠 Memory
-**Upload → Burp → Validate → Store → Execute? → Impact → Report**
+## 🧠 Memory
+**Upload → Burp → Validate → Store → Execute/Access → Impact**
 
 ---
 
-# ⚡ Q7–Q9 Final Revision
+# Q10 — SQL Injection (SQLi)
+
+## 🎤 Interview Question
+**How would you test a web application for SQL Injection?**
+
+## 💡 Answer
+I would identify inputs that interact with the database, capture the request in Burp Suite, and safely test how the application handles unexpected database-related input. I would compare responses/errors, confirm the vulnerability, assess impact, and report it.
+
+## 🌐 Scenario 1 — Login
+
+**Question:** How would you test a login page for SQL Injection?
+
+**Answer:**  
+Capture the login request in Burp Suite and safely test whether input changes the application's database query or authentication behavior.
+
+**Real-Time:** Banking login → input changes query behavior → possible SQL Injection.
+
+## 🌐 Scenario 2 — Product ID
+
+**Question:** How would you test a product ID for SQL Injection?
+
+**Answer:**  
+Capture the request and identify the ID parameter. Safely test unexpected input and compare responses for database errors or abnormal behavior.
+
+**Real-Time:** E-commerce `/product?id=101` → unexpected database behavior → possible SQLi.
+
+## 🔹 Subtopics
+- Authentication SQLi
+- Parameter-based SQLi
+- Error-based SQLi
+- Blind SQLi
+- Parameterized Queries
+- Input Validation
+
+## 🔄 Follow-up
+
+**How do you prevent SQL Injection?**
+
+Use parameterized queries/prepared statements, proper input handling, and least-privilege database access.
+
+## 🧠 Memory
+**Input → Burp → Query Behavior → Confirm SQLi → Impact → Report**
+
+---
+
+# ⚡ Q7–Q10 QUICK REVISION
 
 | Q | Topic | Memory |
 |---|---|---|
-| Q7 | XSS | Input → Execute → Impact |
-| Q8 | Path Traversal | File → Modify Path → Unauthorized Access |
-| Q9 | File Upload | Upload → Validate → Store → Execute |
+| **Q7** | XSS | Input → Execute → XSS |
+| **Q8** | Path Traversal | File → Change Path → Unauthorized File |
+| **Q9** | File Upload | Upload → Validate → Store → Execute/Access |
+| **Q10** | SQL Injection | Input → Query → Database → SQLi |
+
+## 🧠 One-Line Memory
+
+**Q7:** Can my input execute in the browser?
+
+**Q8:** Can I access an unauthorized file?
+
+**Q9:** Can I upload something I shouldn't?
+
+**Q10:** Can my input manipulate the database query?
 
 ---
+

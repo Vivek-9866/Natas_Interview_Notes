@@ -572,6 +572,154 @@ Use parameterized queries/prepared statements, proper input handling, and least-
 
 **Q8:** Can I access an unauthorized file?
 
+
+
+
+# VAPT Interview Preparation — Q11 & Q12
+
+---
+
+# Q11 — Command Injection
+
+## 🎤 Interview Question
+
+**How would you test a web application for Command Injection?**
+
+### 💡 Answer
+
+I would identify inputs that may reach an OS command, capture the request in Burp Suite, and safely test whether my input causes unintended command execution. If confirmed, I would assess the impact and report it with evidence.
+
+---
+
+## 🌐 Scenario 1 — Ping Function
+
+**Question:** How would you test a ping functionality for Command Injection?
+
+**Answer:**
+I would capture the ping request in Burp Suite and check whether the IP parameter is passed unsafely to an OS command.
+
+**Real-Time Example:**
+Network monitoring → IP address → Ping → user input reaches an OS command → **Command Injection**.
+
+---
+
+## 🌐 Scenario 2 — Image Processing
+
+**Question:** How would you test an image-processing function?
+
+**Answer:**
+I would identify the filename parameter, capture the request, and check whether the filename is passed unsafely to a server-side command.
+
+**Real-Time Example:**
+E-commerce → Image upload/processing → filename reaches an OS command → **Command Injection**.
+
+---
+
+## 🔹 Subtopics
+
+* OS Command Injection
+* Input Validation
+* Command Execution
+* Server-Side Processing
+* Allowlisting
+* Least Privilege
+
+## 🔄 Follow-up
+
+**How do you confirm Command Injection?**
+
+I confirm it when reliable evidence shows that my controlled input caused unintended server-side command execution.
+
+## 🧠 Memory
+
+**Input → Burp → OS Command → Execute → Impact → Report**
+
+---
+
+# Q12 — Reflected XSS
+
+## 🎤 Interview Question
+
+**How would you test a web application for Reflected XSS?**
+
+### 💡 Answer
+
+I would identify user-controlled parameters, capture the request in Burp Suite, and check whether the input is reflected in the response. Then I would safely test whether the browser executes it instead of displaying it as text.
+
+---
+
+## 🌐 Scenario 1 — Search Box
+
+**Question:** How would you test a search box for Reflected XSS?
+
+**Answer:**
+I would capture the search request and check whether my input is reflected in the response without proper output encoding.
+
+**Real-Time Example:**
+Job portal → Search keyword → input reflected on results page → browser executes it → **Reflected XSS**.
+
+---
+
+## 🌐 Scenario 2 — Error Message
+
+**Question:** How would you test an error message for Reflected XSS?
+
+**Answer:**
+I would submit controlled input and inspect the response to determine whether the input is safely encoded or interpreted as executable content.
+
+**Real-Time Example:**
+E-commerce → invalid search → input appears in “No results” message → unsafe reflection → **Reflected XSS**.
+
+---
+
+## 🔹 Subtopics
+
+* Reflected XSS
+* Input Reflection
+* Output Encoding
+* HTML Context
+* Content Security Policy (CSP)
+* HttpOnly Cookies
+
+## 🔄 Follow-up
+
+**How do you confirm Reflected XSS?**
+
+I confirm it when controlled input is reflected and executed by the browser instead of being safely displayed as text.
+
+## 🧠 Memory
+
+**Input → Burp → Reflection → Encoding → Browser Execution → Impact**
+
+---
+
+# ⚡ 30-Second Revision
+
+### Q11 — Command Injection
+
+**Input → Burp → OS Command → Execute → Impact**
+
+* Ping → IP Parameter
+* Image Processing → Filename
+
+### Q12 — Reflected XSS
+
+**Input → Burp → Reflection → Browser Execution → Impact**
+
+* Search → Reflected XSS
+* Error Message → Reflected XSS
+
+---
+
+# 🧠 Final Memory
+
+**Q11:**
+👉 *Can my input reach an OS command?*
+
+**Q12:**
+👉 *Can my input be reflected and executed in the browser?*
+
+
 **Q9:** Can I upload something I shouldn't?
 
 **Q10:** Can my input manipulate the database query?

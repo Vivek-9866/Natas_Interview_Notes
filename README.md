@@ -719,10 +719,166 @@ I confirm it when controlled input is reflected and executed by the browser inst
 **Q12:**
 👉 *Can my input be reflected and executed in the browser?*
 
-
 **Q9:** Can I upload something I shouldn't?
 
 **Q10:** Can my input manipulate the database query?
 
 ---
+
+
+# VAPT Interview Preparation — Q13 to Q15
+
+---
+
+# Q13 — File Upload Vulnerability
+
+## 🎤 Interview Question
+**How would you test a File Upload vulnerability?**
+
+### 💡 Answer
+I would capture the upload request in Burp Suite and test the **file extension, MIME type, content, size, storage, and access control**. Then I would assess the impact and report it with evidence.
+
+### 🌐 Scenario 1
+**Profile Picture:** Upload image → Capture request → Test validation → Check storage/access.
+
+### 🌐 Scenario 2
+**Resume Upload:** Upload PDF → Test validation → Check whether unauthorized users can access it.
+
+### 🔴 Vulnerability
+**Unrestricted File Upload**
+
+### 🛠️ Fix
+Server-side validation + allowed file types + size limits + secure storage + prevent execution + access control.
+
+### 🧠 Memory
+**Extension → MIME → Content → Size → Storage → Access**
+
+---
+
+# Q14 — API Security
+
+## 🎤 Interview Question
+**How would you test an API for security vulnerabilities?**
+
+### 💡 Answer
+I would capture API requests in Burp Suite and test **authentication, authorization, IDOR, parameter manipulation, rate limiting, and data exposure**. Then I would validate and report the findings.
+
+### 🌐 Scenario 1
+**Banking API:** Change `/account/101` → `/account/102`.  
+If another user's data appears → **IDOR**.
+
+### 🌐 Scenario 2
+**Login API:** Unlimited repeated login attempts → **Missing Rate Limiting**.
+
+### 🔴 Vulnerabilities
+**IDOR / Broken Access Control**  
+**Missing Rate Limiting**
+
+### 🛠️ Fix
+- IDOR → Server-side authorization
+- Rate Limiting → Throttling + request limits
+
+### 🧠 Memory
+**AUTH → AUTHZ → IDOR → PARAMETER → RATE LIMIT → DATA**
+
+---
+
+# Q15 — VAPT Methodology
+
+## 🎤 Interview Question
+**How would you perform VAPT on a web application?**
+
+### 💡 Answer
+I would perform **reconnaissance and enumeration**, test for vulnerabilities, validate the findings, assess the impact, report with evidence, and retest after remediation.
+
+### 🔎 Reconnaissance
+Collect basic target information.
+
+**Example:** Domain, subdomains, technologies.
+
+### 🔍 Enumeration
+Find specific areas to test.
+
+**Example:** Ports, directories, APIs, endpoints, login pages.
+
+### 🧪 Testing
+Test vulnerabilities like:
+
+**IDOR, XSS, SQL Injection, File Upload**
+
+### 📝 Report
+**Vulnerability → Steps → Evidence → Impact → Fix**
+
+### 🔄 Retest
+Verify the fix after remediation.
+
+### 🌐 Scenario
+**Banking App:**
+
+`Recon → Enumeration → Find API → Test IDOR → Validate → Report → Fix → Retest`
+
+### 🧠 Memory
+**RECON → ENUMERATE → TEST → VALIDATE → IMPACT → REPORT → RETEST**
+
+# 🔥 5 Important Vulnerabilities / Concepts
+
+---
+
+## 1. IDOR
+
+**Meaning:** Access another user's data by changing an ID.
+
+**Example:** `/profile/101` → `/profile/102` → User B's data appears.
+
+**Fix:** Server-side authorization.
+
+**Memory:** `IDOR → Change ID → Other Data`
+
+---
+
+## 2. SQL Injection
+
+**Meaning:** Manipulate a database query through unsafe input.
+
+**Example:** Login input changes the application's database query.
+
+**Fix:** Parameterized queries / Prepared Statements.
+
+**Memory:** `SQLi → Input → Database`
+
+---
+
+## 3. API Security
+
+**Meaning:** Test App ↔ Server communication.
+
+**Example:** Test API authentication, authorization, IDOR, and rate limiting.
+
+**Fix:** Proper authentication + authorization + validation.
+
+**Memory:** `API → App ↔ Server`
+
+---
+
+## 4. XSS
+
+**Meaning:** Malicious input executes in another user's browser.
+
+**Example:** Malicious comment executes when another user views it.
+
+**Fix:** Output encoding + secure input handling.
+
+**Memory:** `XSS → Input → Browser`
+
+---
+
+## 5. Rate Limiting
+
+**Meaning:** Limit repeated requests within a time period.
+
+**Example:** Login API allows only a limited number of attempts per minute.
+
+**Fix:** Rate limiting + throttling.
+
+**Memory:** `Rate Limit → Control Requests`
 

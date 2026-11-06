@@ -1,4 +1,4 @@
-# 🔥 VAPT INTERVIEW PREPARATION — DAY 1 & DAY 2
+    # 🔥 VAPT INTERVIEW PREPARATION — DAY 1 & DAY 2
 
 ---
 
@@ -875,6 +875,97 @@ Verify the fix after remediation.
 ## 5. Rate Limiting
 
 **Meaning:** Limit repeated requests within a time period.
+
+
+
+# Q16 — Blind SQL Injection
+
+**Interview Question:** How would you test for Blind SQL Injection?
+
+**Answer:**
+1. Identify database-related inputs.
+2. Capture the request in Burp Suite.
+3. Test using Boolean-based and Time-based techniques.
+4. Observe consistent response differences.
+5. Confirm, document evidence and recommend parameterized queries.
+
+**Scenario:** E-commerce product page (`product?id=10`).
+
+**Fix:** Use parameterized queries.
+
+**Memory:** Identify → Capture → Test → Confirm → Report → Fix.
+
+
+# Q17 — Blind Command Injection
+
+**Interview Question:** How would you test for Blind Command Injection?
+
+**Answer:**
+1. Identify inputs that interact with OS commands.
+2. Capture the request in Burp Suite.
+3. Perform safe, controlled tests.
+4. Observe unexpected command execution or timing differences.
+5. Confirm, document evidence and recommend safe APIs.
+
+**Scenario:** Website IP checking (Ping) feature.
+
+**Fix:** Avoid shell commands; use safe APIs.
+
+**Memory:** Identify → Capture → Test → Confirm → Report → Fix.
+
+
+# Q18 — CSRF (Cross-Site Request Forgery)
+
+**Interview Question:** How would you test for CSRF?
+
+**Answer:**
+1. Identify sensitive actions (email change, money transfer).
+2. Capture the request in Burp Suite.
+3. Check CSRF protection.
+4. Test unauthorized cross-site requests.
+5. Confirm, document evidence and recommend CSRF tokens and SameSite cookies.
+
+**Scenario:** Attacker tricks a logged-in user's browser into changing their email.
+
+**Fix:** CSRF tokens, SameSite cookies and Origin validation.
+
+**Memory:** Sensitive Action → Capture → Check → Test → Report → Fix.
+
+
+# Q19 — SSRF (Server-Side Request Forgery)
+
+**Interview Question:** How would you test for SSRF?
+
+**Answer:**
+1. Identify URL-based features (URL preview, PDF generator).
+2. Capture the request in Burp Suite.
+3. Provide a URL from your controlled test server.
+4. Check whether the application server makes an unexpected request.
+5. Confirm, document evidence and recommend URL allowlisting and network restrictions.
+
+**Scenario:** Website URL preview feature.
+
+**Fix:** URL allowlisting and network restrictions.
+
+**Memory:** Find URL → Capture → Check Server Request → Confirm → Report → Fix.
+
+
+# Q20 — Open Redirect
+
+**Interview Question:** How would you test for Open Redirect?
+
+**Answer:**
+1. Identify redirect parameters (`returnUrl`, `redirect`).
+2. Capture the request in Burp Suite.
+3. Modify the destination to an authorized external test domain.
+4. Check whether the application redirects to that domain.
+5. Confirm, document evidence and recommend destination allowlisting.
+
+**Scenario:** Login page redirects users to an external website.
+
+**Fix:** Allow only trusted redirect destinations.
+
+**Memory:** Find Parameter → Change URL → Check Redirect → Report → Fix.
 
 **Example:** Login API allows only a limited number of attempts per minute.
 

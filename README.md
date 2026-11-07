@@ -973,3 +973,62 @@ Verify the fix after remediation.
 
 **Memory:** `Rate Limit → Control Requests`
 
+
+# Q21 — HTTP Parameter Pollution (HPP)
+
+### Interview Question
+How would you test a web application for HTTP Parameter Pollution?
+
+### Interview Answer
+I identify important parameters and capture the request in Burp Suite. I send the same parameter multiple times with different values and observe how the application processes them. I check for unexpected behavior and security impact. If confirmed, I document the evidence and recommend proper server-side validation.
+
+### Real-Time Example
+**E-commerce Website:**
+
+- Original product price: ₹1,000
+- Modified request:
+
+`price=1000&price=10`
+
+- Observe whether the application processes the first value, last value, or both.
+- If the backend charges an incorrect amount, it may indicate a security vulnerability.
+
+### How to Fix
+- Reject duplicate sensitive parameters.
+- Implement consistent server-side validation.
+- Never trust client-controlled prices.
+
+### Memory Line
+Identify → Duplicate Parameters → Observe Behavior → Confirm Impact → Report
+
+
+---
+
+# Q22 — Host Header Injection
+
+### Interview Question
+How would you test a web application for Host Header Injection?
+
+### Interview Answer
+I capture the HTTP request using Burp Suite and inspect the Host header. I modify it to a domain I control and observe the application response. I check whether the application uses the manipulated hostname in password reset links or redirects. If I confirm security impact, I document the evidence and recommend strict Host header validation.
+
+### Real-Time Example
+**Password Reset Functionality:**
+
+1. Request a password reset for an authorized test account.
+2. Capture the request in Burp Suite.
+3. Modify the Host header to a domain I control.
+
+`Host: attacker.example`
+
+4. Check the password reset email.
+5. If the reset link contains the manipulated hostname instead of the legitimate domain, it may indicate Host Header Injection.
+
+### How to Fix
+- Validate Host headers using an allowlist.
+- Generate sensitive links using a trusted, configured domain.
+- Avoid trusting user-controlled Host header values.
+
+### Memory Line
+Capture Request → Modify Host → Check Reset Link → Confirm Impact → Report
+

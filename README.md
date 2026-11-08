@@ -1032,3 +1032,48 @@ I capture the HTTP request using Burp Suite and inspect the Host header. I modif
 ### Memory Line
 Capture Request → Modify Host → Check Reset Link → Confirm Impact → Report
 
+
+# Q23 — Security Misconfiguration
+
+### Interview Question
+How would you test a web application for Security Misconfiguration?
+
+### Interview Answer
+I identify the application technologies and server details. I check security headers, default credentials, directory listing, exposed admin pages, and detailed error messages using Burp Suite. If I find any issue, I confirm its impact, collect evidence, and recommend secure configurations.
+
+### Real-Time Example
+**Directory Listing:**
+If `/uploads/` displays all files, sensitive documents may be exposed.
+
+### Fix
+- Disable directory listing.
+- Remove default credentials.
+- Hide detailed error messages.
+- Apply secure server configurations.
+
+### Memory Line
+Identify → Check Configuration → Find Weakness → Assess Impact → Report
+
+
+---
+
+# Q24 — Sensitive Data Exposure
+
+### Interview Question
+How would you test a web application for Sensitive Data Exposure?
+
+### Interview Answer
+I identify sensitive information such as passwords, personal details, and payment information. I capture requests and responses using Burp Suite and check whether sensitive data is transmitted securely. If I find exposure, I assess the impact, collect evidence, and recommend proper encryption and access controls.
+
+### Real-Time Example
+**Banking Application:**
+If login credentials are transmitted over HTTP instead of HTTPS, attackers may intercept sensitive information.
+
+### Fix
+- Enforce HTTPS and secure TLS.
+- Encrypt sensitive data at rest.
+- Store passwords using secure hashing.
+- Apply proper access controls.
+
+### Memory Line
+Identify Sensitive Data → Capture Request → Check Exposure → Assess Impact → Report
